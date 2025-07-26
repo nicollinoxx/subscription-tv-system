@@ -1,4 +1,6 @@
 class Package < ApplicationRecord
+  has_and_belongs_to_many :additional_services
+
   belongs_to :plan
 
   validates :name, :price, presence: true
