@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :packages
   resources :additional_services
   resources :plans
   resources :customers
