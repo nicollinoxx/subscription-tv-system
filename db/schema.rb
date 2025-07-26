@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_26_200349) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_26_203709) do
   create_table "additional_services", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -49,12 +49,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_200349) do
   end
 
   create_table "signatures", force: :cascade do |t|
-    t.integer "costumer_id", null: false
+    t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["costumer_id"], name: "index_signatures_on_costumer_id"
+    t.integer "plan_id"
+    t.integer "package_id"
+    t.index ["customer_id"], name: "index_signatures_on_customer_id"
+    t.index ["package_id"], name: "index_signatures_on_package_id"
+    t.index ["plan_id"], name: "index_signatures_on_plan_id"
   end
 
   add_foreign_key "packages", "plans"
-  add_foreign_key "signatures", "costumers"
+  add_foreign_key "signatures", "customers"
+  add_foreign_key "signatures", "packages"
+  add_foreign_key "signatures", "plans"
 end
