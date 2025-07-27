@@ -38,9 +38,19 @@ class AdditionalServicesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to additional_service_url(@additional_service)
   end
 
-  test "should destroy additional_service" do
-    assert_difference("AdditionalService.count", -1) do
+  test "should not destroy additional_service if packages or signature exist" do
+    assert_no_difference("AdditionalService.count", -1) do
       delete additional_service_url(@additional_service)
+    end
+
+    assert_redirected_to additional_services_url
+  end
+
+  test "should destroy additional_service" do
+    additional_service = additional_services(:no_packages_and_signatures)
+
+    assert_difference("AdditionalService.count", -1) do
+      delete additional_service_url(additional_service)
     end
 
     assert_redirected_to additional_services_url

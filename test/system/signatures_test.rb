@@ -14,7 +14,7 @@ class SignaturesTest < ApplicationSystemTestCase
     visit signatures_url
     click_on "New signature"
 
-    fill_in "Costumer", with: @signature.costumer_id
+    fill_in "Customer", with: @signature.customer_id
     click_on "Create Signature"
 
     assert_text "Signature was successfully created"
@@ -25,7 +25,7 @@ class SignaturesTest < ApplicationSystemTestCase
     visit signature_url(@signature)
     click_on "Edit this signature", match: :first
 
-    fill_in "Costumer", with: @signature.costumer_id
+    fill_in "Customer", with: @signature.customer_id
     click_on "Update Signature"
 
     assert_text "Signature was successfully updated"

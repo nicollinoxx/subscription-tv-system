@@ -38,9 +38,19 @@ class PlansControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to plan_url(@plan)
   end
 
-  test "should destroy plan" do
-    assert_difference("Plan.count", -1) do
+  test "should not destroy plan if signatures or packages exists" do
+    assert_no_difference("Plan.count", -1) do
       delete plan_url(@plan)
+    end
+
+    assert_redirected_to plans_url
+  end
+
+  test "should destroy plan" do
+    plan = plans(:no_packages_and_signatures)
+
+    assert_difference("Plan.count", -1) do
+      delete plan_url(plan)
     end
 
     assert_redirected_to plans_url

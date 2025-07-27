@@ -3,7 +3,23 @@
 one:
   name: MyString
   price: 9.99
+  plan: one
+  additional_services:
+    - one
+    - two
 
 two:
   name: MyString
   price: 9.99
+  plan: two
+  additional_services:
+    - one
+    - two
+
+no_signature:
+  name: MyString
+  price: 9.99
+  plan: two
+  additional_services:
+    - one
+    - two

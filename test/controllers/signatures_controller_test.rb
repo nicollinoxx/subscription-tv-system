@@ -3,6 +3,9 @@ require "test_helper"
 class SignaturesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @signature = signatures(:one)
+    @package = packages(:one)
+    @plan = plans(:one)
+    @additional_services = [additional_services(:one), additional_services(:two)]
   end
 
   test "should get index" do
@@ -17,7 +20,7 @@ class SignaturesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create signature" do
     assert_difference("Signature.count") do
-      post signatures_url, params: { signature: { costumer_id: @signature.costumer_id } }
+      post signatures_url, params: { signature: { customer_id: @signature.customer_id, plan_id: @plan.id, package_id: @package.id, additional_service_ids: @additional_services.map(&:id) } }
     end
 
     assert_redirected_to signature_url(Signature.last)
@@ -34,7 +37,7 @@ class SignaturesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update signature" do
-    patch signature_url(@signature), params: { signature: { costumer_id: @signature.costumer_id } }
+    patch signature_url(@signature), params: { signature: { customer_id: @signature.customer_id } }
     assert_redirected_to signature_url(@signature)
   end
 

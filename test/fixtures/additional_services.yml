@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   price: 9.99
+
+no_packages_and_signatures:
+  name: MyString
+  price: 9.99
