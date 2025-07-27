@@ -41,8 +41,11 @@ class PlansController < ApplicationController
 
   # DELETE /plans/1
   def destroy
-    @plan.destroy!
-    redirect_to plans_path, notice: "Plan was successfully destroyed.", status: :see_other
+    if @plan.destroy
+      redirect_to plans_path, notice: "Plan was successfully destroyed.", status: :see_other
+    else
+      redirect_to plans_path, alert: @plan.errors.full_messages.to_sentence
+    end
   end
 
   private

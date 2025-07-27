@@ -1,4 +1,6 @@
 class Package < ApplicationRecord
+  include PreventDeletionIfLinked
+
   belongs_to :plan
 
   has_and_belongs_to_many :additional_services
@@ -7,6 +9,7 @@ class Package < ApplicationRecord
   validates :name, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validate  :should_have_at_least_one_additional_service
+
   before_save :calculate_total_items, unless: -> { price.present? }
 
   private

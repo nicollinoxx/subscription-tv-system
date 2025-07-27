@@ -41,8 +41,11 @@ class PackagesController < ApplicationController
 
   # DELETE /packages/1
   def destroy
-    @package.destroy!
-    redirect_to packages_path, notice: "Package was successfully destroyed.", status: :see_other
+    if @package.destroy
+      redirect_to packages_path, notice: "Package was successfully destroyed.", status: :see_other
+    else
+      redirect_to packages_path, alert: @package.errors.full_messages.to_sentence
+    end
   end
 
   private

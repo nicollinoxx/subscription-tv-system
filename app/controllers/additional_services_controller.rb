@@ -41,8 +41,11 @@ class AdditionalServicesController < ApplicationController
 
   # DELETE /additional_services/1
   def destroy
-    @additional_service.destroy!
-    redirect_to additional_services_path, notice: "Additional service was successfully destroyed.", status: :see_other
+    if @additional_service.destroy
+      redirect_to additional_services_path, notice: "Additional service was successfully destroyed.", status: :see_other
+    else
+      redirect_to additional_services_path, alert: @additional_service.errors.full_messages.to_sentence
+    end
   end
 
   private

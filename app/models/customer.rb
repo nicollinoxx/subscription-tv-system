@@ -1,5 +1,5 @@
 class Customer < ApplicationRecord
-  has_many :signatures
+  has_many :signatures, dependent: :destroy
 
   validates :name, :age, presence: true
   validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 18 }
