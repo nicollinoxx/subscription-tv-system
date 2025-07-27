@@ -53,6 +53,6 @@ class SignaturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def signature_params
-      params.expect(signature: [ :costumer_id ])
+      params.expect(signature: [ :customer_id, :plan_id, :package_id, additional_service_ids: [] ])
     end
 end
