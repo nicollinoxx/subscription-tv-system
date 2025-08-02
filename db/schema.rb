@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_02_135157) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_02_141031) do
   create_table "additional_services", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -35,6 +35,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_02_135157) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "billable_type", null: false
+    t.integer "billable_id", null: false
+    t.index ["billable_type", "billable_id"], name: "index_bills_on_billable"
   end
 
   create_table "customers", force: :cascade do |t|
