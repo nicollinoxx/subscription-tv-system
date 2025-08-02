@@ -8,15 +8,11 @@
       </tr>
     </thead>
     <tbody>
-      <% bills.each do |bill| %>
         <tr class="border-b border-gray-200">
-          <th scope="row" class="px-6 py-4 font-medium">
-            <%= number_to_currency(bill.price) %>
-          </th>
-          <td class="px-6 py-4"><%= bill.created_at.to_date %></td>
-          <td class="px-6 py-4"><%= bill.due_date %></td>
+          <td class="px-6 py-4"><%= invoice.price %></td>
+          <td class="px-6 py-4"><%= invoice.created_at.to_date %></td>
+          <td class="px-6 py-4"><%= invoice.due_date %></td>
         </tr>
-      <% end %>
     </tbody>
   </table>
 </div>
