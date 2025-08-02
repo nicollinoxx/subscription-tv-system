@@ -1,0 +1,2 @@
+class InstallmentBook < ApplicationRecord
+end
