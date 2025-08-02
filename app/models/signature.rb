@@ -1,23 +1,17 @@
 class Signature < ApplicationRecord
+  include BillCalculate
+
   belongs_to :customer
   belongs_to :plan, optional: true
   belongs_to :package, optional: true
 
   has_and_belongs_to_many :additional_services
+  has_many :invoice, dependent: :destroy
+  has_many :bills, dependent: :destroy
 
   validate :should_have_package_or_plan, :should_not_duplicate_additional_services
-  after_save :calculate_bill
 
   private
-
-  def calculate_bill
-    calculate_bill_to plan || package
-    additional_services.each { |additional_service| calculate_bill_to additional_service }
-  end
-
-  def calculate_bill_to item
-    12.times { |date| item.bills.find_or_create_by!(due_date: Date.current + date.month, price: item.price) }
-  end
 
   def should_have_package_or_plan
     errors.add(:base, "Must have either a package or a plan, not both") unless has_plan_or_package?

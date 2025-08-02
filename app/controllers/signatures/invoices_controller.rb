@@ -2,8 +2,8 @@ class Signatures::InvoicesController < ApplicationController
   before_action :set_signature
 
   def index
-    @packages_bills = @signature.package.bills if @signature.package.present?
-    @plan_bills = @signature.plan.bills if @signature.plan.present?
+    @package_bills = @signature.package&.bills
+    @plan_bills = @signature.plan&.bills
 
     @additional_services = @signature.additional_services
   end
