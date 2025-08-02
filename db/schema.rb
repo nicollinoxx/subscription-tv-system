@@ -31,7 +31,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_02_141031) do
   end
 
   create_table "bills", force: :cascade do |t|
-    t.datetime "due_date"
+    t.date "due_date"
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -48,14 +48,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_02_141031) do
   end
 
   create_table "installment_books", force: :cascade do |t|
-    t.datetime "due_date"
+    t.date "due_date"
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.datetime "due_date"
+    t.date "due_date"
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
