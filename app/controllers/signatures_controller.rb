@@ -30,15 +30,6 @@ class SignaturesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /signatures/1
-  def update
-    if @signature.update(signature_params)
-      redirect_to @signature, notice: "Signature was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   # DELETE /signatures/1
   def destroy
     @signature.destroy!

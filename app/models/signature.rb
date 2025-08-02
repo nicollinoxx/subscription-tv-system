@@ -15,11 +15,7 @@ class Signature < ApplicationRecord
   private
 
   def synchronize_invoice
-    unless if has_invoices?
-      invoices.where.not(created_at: Date.current).each { |invoice| invoice.save }
-    else
-      12.times { |date| invoices.create(due_date: self.created_at + date.month) }
-    end
+    12.times { |date| invoices.create(due_date: self.created_at + date.month) }
   end
 
   def should_have_package_or_plan
