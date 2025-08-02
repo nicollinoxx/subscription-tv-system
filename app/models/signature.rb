@@ -6,8 +6,18 @@ class Signature < ApplicationRecord
   has_and_belongs_to_many :additional_services
 
   validate :should_have_package_or_plan, :should_not_duplicate_additional_services
+  after_save :calculate_bill
 
   private
+
+  def calculate_bill
+    calculate_bill_to plan || package
+    additional_services.each { |item| calculate_bill_to item }
+  end
+
+  def calculate_bill_to item
+    12.times { |date| item.bills.find_or_create_by!(due_date: Date.current + date.month, price: item.price) }
+  end
 
   def should_have_package_or_plan
     errors.add(:base, "Must have either a package or a plan, not both") unless has_plan_or_package?

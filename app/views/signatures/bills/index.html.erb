@@ -1,0 +1,20 @@
+<% content_for :title, "Bills" %>
+
+<div class="w-full">
+  <div class="flex flex-wrap gap-6 justify-between">
+    <div>
+      <h2 class="font-bold text-xl">
+        <%= @signature.package.present? ? "Package: #{@signature.package.name}" : "Package: #{@signature.plan.name}" %>
+      </h2>
+      <%= render "table", bills: @plan_bills || @package_bills %>
+    </div>
+
+    <div>
+      <h2 class="font-bold text-xl mb-3"> Additional services </h2>
+      <% @additional_services.each do |service| %>
+        <h2 class="text-xl text-center"> <%= service.name %></h2>
+        <%= render "table", bills: service.bills %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :signatures
+  resources :signatures do
+    resources :bills, module: :signatures, only: [:index]
+  end
+
   resources :packages
   resources :additional_services
   resources :plans
