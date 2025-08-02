@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  due_date: 2025-08-02 10:32:15
+  price: 9.99
+
+two:
+  due_date: 2025-08-02 10:32:15
+  price: 9.99
