@@ -1,5 +1,5 @@
 class Plan < ApplicationRecord
-  include PreventDeletionIfLinked
+  include LinkedRecordsProtection
 
   has_many :packages
   has_many :signatures

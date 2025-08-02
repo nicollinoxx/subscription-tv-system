@@ -1,4 +1,4 @@
-module PreventDeletionIfLinked
+module LinkedRecordsProtection
   extend ActiveSupport::Concern
 
   included do
