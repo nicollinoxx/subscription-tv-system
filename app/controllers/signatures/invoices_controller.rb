@@ -1,4 +1,4 @@
-class Signatures::BillsController < ApplicationController
+class Signatures::InvoicesController < ApplicationController
   before_action :set_signature
 
   def index
