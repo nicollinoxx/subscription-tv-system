@@ -12,7 +12,7 @@ class Signature < ApplicationRecord
 
   def calculate_bill
     calculate_bill_to plan || package
-    additional_services.each { |item| calculate_bill_to item }
+    additional_services.each { |additional_service| calculate_bill_to additional_service }
   end
 
   def calculate_bill_to item
