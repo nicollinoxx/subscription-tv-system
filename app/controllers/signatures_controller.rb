@@ -1,21 +1,17 @@
 class SignaturesController < ApplicationController
   before_action :set_signature, only: %i[ show destroy ]
 
-  # GET /signatures
   def index
     @signatures = Signature.all
   end
 
-  # GET /signatures/1
   def show
   end
 
-  # GET /signatures/new
   def new
     @signature = Signature.new
   end
 
-  # POST /signatures
   def create
     @signature = Signature.new(signature_params)
 
@@ -26,19 +22,17 @@ class SignaturesController < ApplicationController
     end
   end
 
-  # DELETE /signatures/1
   def destroy
     @signature.destroy!
     redirect_to signatures_path, notice: "Signature was successfully destroyed.", status: :see_other
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_signature
       @signature = Signature.find(params.expect(:id))
     end
 
-    # Only allow a list of trusted parameters through.
     def signature_params
       params.expect(signature: [ :customer_id, :plan_id, :package_id, additional_service_ids: [] ])
     end

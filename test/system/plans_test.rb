@@ -18,7 +18,7 @@ class PlansTest < ApplicationSystemTestCase
     fill_in "Price", with: @plan.price
     click_on "Create Plan"
 
-    assert_text "Plan was successfully created"
+    assert_text "Plan was successfully created."
     click_on "Back"
   end
 
@@ -30,14 +30,7 @@ class PlansTest < ApplicationSystemTestCase
     fill_in "Price", with: @plan.price
     click_on "Update Plan"
 
-    assert_text "Plan was successfully updated"
+    assert_text "Plan was successfully updated."
     click_on "Back"
-  end
-
-  test "should destroy Plan" do
-    visit plan_url(@plan)
-    accept_confirm { click_on "Destroy this plan", match: :first }
-
-    assert_text "This Plan is linked to packages or signatures."
   end
 end

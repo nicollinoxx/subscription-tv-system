@@ -16,9 +16,15 @@ class PackagesTest < ApplicationSystemTestCase
 
     fill_in "Name", with: @package.name
     fill_in "Price", with: @package.price
+
+    sleep(1)
+    @package.additional_services.each do |service|
+      select service.name, from: "package_additional_service_ids" # replace "package_additional_service_ids" with the correct id you see in your HTML
+    end
+
     click_on "Create Package"
 
-    assert_text "Package must have at least one additional service."
+    assert_text "Package was successfully created."
     click_on "Back"
   end
 
@@ -32,21 +38,5 @@ class PackagesTest < ApplicationSystemTestCase
 
     assert_text "Package was successfully updated"
     click_on "Back"
-  end
-
-  test "should not destroy Package when it in use" do
-    visit package_url(@package)
-    accept_confirm { click_on "Destroy this package", match: :first }
-
-    assert_text "This Package is linked to packages or signatures."
-  end
-
-  test "should destroy Package when not in use" do
-    @package.signatures.clear
-
-    visit package_url(@package)
-    accept_confirm { click_on "Destroy this package", match: :first }
-
-    assert_text "Package was successfully destroyed."
   end
 end

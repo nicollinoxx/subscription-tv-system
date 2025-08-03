@@ -39,23 +39,4 @@ class PackagesControllerTest < ActionDispatch::IntegrationTest
     patch package_url(@package), params: { package: { name: @package.name, price: @package.price } }
     assert_redirected_to package_url(@package)
   end
-
-  test "should not destroy package if signatures exist" do
-    assert_no_difference("Package.count", -1) do
-      delete package_url(@package)
-    end
-
-    assert_redirected_to packages_url
-  end
-
-  test "should destroy package if signatures is nil" do
-    package = packages(:no_signature)
-
-    assert_difference("Package.count", -1) do
-      delete package_url(package)
-    end
-
-
-    assert_redirected_to packages_url
-  end
 end

@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: MyString1
   price: 9.99
 
 two:
-  name: MyString
+  name: MyString2
   price: 9.99
 
 three:
-  name: MyString
+  name: MyString3
   price: 9.99
 
 no_packages_and_signatures:

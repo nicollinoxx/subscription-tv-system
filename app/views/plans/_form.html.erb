@@ -1,24 +1,12 @@
 <%= form_with(model: plan, class: "contents") do |form| %>
-  <% if plan.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
-
-      <ul class="list-disc ml-6">
-        <% plan.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="my-5">
     <%= form.label :name %>
-    <%= form.text_field :name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": plan.errors[:name].none?, "border-red-400 focus:outline-red-600": plan.errors[:name].any?}] %>
+    <%= form.text_field :name, required: true, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": plan.errors[:name].none?, "border-red-400 focus:outline-red-600": plan.errors[:name].any?}] %>
   </div>
 
   <div class="my-5">
     <%= form.label :price %>
-    <%= form.text_field :price, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": plan.errors[:price].none?, "border-red-400 focus:outline-red-600": plan.errors[:price].any?}] %>
+    <%= form.number_field :price, required: true, min: 0, step: "any", class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": plan.errors[:price].none?, "border-red-400 focus:outline-red-600": plan.errors[:price].any?}] %>
   </div>
 
   <div class="inline">
