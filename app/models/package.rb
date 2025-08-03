@@ -20,6 +20,6 @@ class Package < ApplicationRecord
     end
 
     def calculate_total_items
-      self.price = plan.price + additional_services.sum(:price)
+      self.price = plan.price + additional_services.sum(&:price)
     end
 end

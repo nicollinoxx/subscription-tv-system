@@ -1,5 +1,5 @@
 class SignaturesController < ApplicationController
-  before_action :set_signature, only: %i[ show edit destroy ]
+  before_action :set_signature, only: %i[ show destroy ]
 
   # GET /signatures
   def index
@@ -13,10 +13,6 @@ class SignaturesController < ApplicationController
   # GET /signatures/new
   def new
     @signature = Signature.new
-  end
-
-  # GET /signatures/1/edit
-  def edit
   end
 
   # POST /signatures
