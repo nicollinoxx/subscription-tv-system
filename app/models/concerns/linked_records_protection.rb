@@ -7,15 +7,15 @@ module LinkedRecordsProtection
 
   private
 
-  def ensure_not_linked
-    errors.add(:base, "This #{self.class.name} is linked to packages or signatures."); throw :abort
-  end
+    def ensure_not_linked
+      errors.add(:base, "This #{self.class.name} is linked to packages or signatures."); throw :abort
+    end
 
-  def has_signatures?
-    respond_to?(:signatures) && signatures.exists?
-  end
+    def has_signatures?
+      respond_to?(:signatures) && signatures.exists?
+    end
 
-  def has_packages?
-    respond_to?(:packages) && packages.exists?
-  end
+    def has_packages?
+      respond_to?(:packages) && packages.exists?
+    end
 end

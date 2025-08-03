@@ -14,19 +14,19 @@ class Signature < ApplicationRecord
 
   private
 
-  def should_have_package_or_plan
-    errors.add(:base, "Must have either a package or a plan, not both") unless has_plan_or_package?
-  end
+    def should_have_package_or_plan
+      errors.add(:base, "Must have either a package or a plan, not both") unless has_plan_or_package?
+    end
 
-  def should_not_duplicate_additional_services
-    errors.add(:base, "The chosen additional services are already in the package") if has_repeated_additional_services?
-  end
+    def should_not_duplicate_additional_services
+      errors.add(:base, "The chosen additional services are already in the package") if has_repeated_additional_services?
+    end
 
-  def has_repeated_additional_services?
-    (package.additional_service_ids & additional_service_ids).any? if package.present?
-  end
+    def has_repeated_additional_services?
+      (package.additional_service_ids & additional_service_ids).any? if package.present?
+    end
 
-  def has_plan_or_package?
-    plan.present? != package.present?
-  end
+    def has_plan_or_package?
+      plan.present? != package.present?
+    end
 end
