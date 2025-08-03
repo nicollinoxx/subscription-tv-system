@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :signatures do
     resources :invoices, module: :signatures, only: [:index]
+    resource  :installment_book, module: :signatures, only: [:show]
   end
 
   resources :packages

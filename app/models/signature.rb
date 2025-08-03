@@ -8,15 +8,11 @@ class Signature < ApplicationRecord
   has_and_belongs_to_many :additional_services
   has_many :invoices, dependent: :destroy
   has_many :bills, dependent: :destroy
+  has_one  :installment_book, dependent: :destroy
 
   validate :should_have_package_or_plan, :should_not_duplicate_additional_services
-  after_save :synchronize_invoice
 
   private
-
-  def synchronize_invoice
-    12.times { |date| invoices.create(due_date: self.created_at + date.month) }
-  end
 
   def should_have_package_or_plan
     errors.add(:base, "Must have either a package or a plan, not both") unless has_plan_or_package?
@@ -32,9 +28,5 @@ class Signature < ApplicationRecord
 
   def has_plan_or_package?
     plan.present? != package.present?
-  end
-
-  def has_invoices?
-    invoices.exists?
   end
 end

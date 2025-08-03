@@ -4,7 +4,6 @@ class Signatures::InvoicesController < ApplicationController
   def index
     @package_bills = @signature.package&.bills
     @plan_bills = @signature.plan&.bills
-
     @additional_services = @signature.additional_services
   end
 

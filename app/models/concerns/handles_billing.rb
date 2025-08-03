@@ -2,7 +2,7 @@ module HandlesBilling
   extend ActiveSupport::Concern
 
   included do
-    after_create :manage_bills
+    after_create :create_bills, :create_invoices, :create_installment_book_to_signature
   end
 
   private
@@ -14,5 +14,17 @@ module HandlesBilling
 
     def create_bills_to item
       12.times { |date| bills.create(billable: item, due_date: self.created_at + date.month, price: item.price) }
+    end
+
+    def create_invoices
+      12.times { |date| invoices.create(due_date: self.created_at + date.month, price: total_invoice_price) }
+    end
+
+    def total_invoice_price
+      (plan.price || package.price) + additional_services.sum(:price)
+    end
+
+    def create_installment_book_to_signature
+      self.create_installment_book(due_date: Date.current + 1.month, price: invoices.first.price * 12)
     end
 end
