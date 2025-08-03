@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     resource  :installment_book, module: :signatures, only: [:show]
   end
 
-  resources :packages
-  resources :additional_services
-  resources :plans
+  resources :packages, except: [:destroy]
+  resources :additional_services, except: [:destroy]
+  resources :plans, except: [:destroy]
   resources :customers
 
   root "customers#index"
