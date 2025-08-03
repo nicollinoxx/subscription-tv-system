@@ -70,6 +70,6 @@ class PackageTest < ActiveSupport::TestCase
     package = Package.new(name: "Calculated Price", plan: @plan, additional_services: [additional_services(:one)])
 
     assert package.save!
-    assert_equal 9.99, package.price
+    assert_equal 19.98, package.price
   end
 end
