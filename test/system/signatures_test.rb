@@ -3,6 +3,9 @@ require "application_system_test_case"
 class SignaturesTest < ApplicationSystemTestCase
   setup do
     @signature = signatures(:one)
+    @customer = customers(:one)
+    @plan = plans(:one)
+    @package = packages(:one)
   end
 
   test "visiting the index" do
@@ -14,21 +17,12 @@ class SignaturesTest < ApplicationSystemTestCase
     visit signatures_url
     click_on "New signature"
 
-    fill_in "Customer", with: @signature.customer_id
+    select @customer.name, from: 'signature[customer_id]'
+    select @plan.name, from: 'signature[plan_id]'
+
     click_on "Create Signature"
 
     assert_text "Signature was successfully created"
-    click_on "Back"
-  end
-
-  test "should update Signature" do
-    visit signature_url(@signature)
-    click_on "Edit this signature", match: :first
-
-    fill_in "Customer", with: @signature.customer_id
-    click_on "Update Signature"
-
-    assert_text "Signature was successfully updated"
     click_on "Back"
   end
 

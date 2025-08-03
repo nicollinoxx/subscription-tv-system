@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: MyString1
   price: 9.99
   plan: one
   additional_services:
@@ -9,7 +9,7 @@ one:
     - two
 
 two:
-  name: MyString
+  name: MyString2
   price: 9.99
   plan: two
   additional_services:

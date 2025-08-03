@@ -16,7 +16,7 @@ class Package < ApplicationRecord
   private
 
     def should_have_at_least_one_additional_service
-      errors.add(:base, "Package must have at least one additional service") unless additional_services.any?
+      errors.add(:base, "Package must have at least one additional service.") unless additional_services.any?
     end
 
     def calculate_total_items

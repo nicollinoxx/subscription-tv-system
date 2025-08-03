@@ -38,6 +38,6 @@ class PlansTest < ApplicationSystemTestCase
     visit plan_url(@plan)
     accept_confirm { click_on "Destroy this plan", match: :first }
 
-    assert_text "Plan was successfully destroyed"
+    assert_text "This Plan is linked to packages or signatures."
   end
 end

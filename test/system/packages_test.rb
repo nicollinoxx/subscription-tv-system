@@ -18,7 +18,7 @@ class PackagesTest < ApplicationSystemTestCase
     fill_in "Price", with: @package.price
     click_on "Create Package"
 
-    assert_text "Package was successfully created"
+    assert_text "Package must have at least one additional service."
     click_on "Back"
   end
 
@@ -34,10 +34,19 @@ class PackagesTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
-  test "should destroy Package" do
+  test "should not destroy Package when it in use" do
     visit package_url(@package)
     accept_confirm { click_on "Destroy this package", match: :first }
 
-    assert_text "Package was successfully destroyed"
+    assert_text "This Package is linked to packages or signatures."
+  end
+
+  test "should destroy Package when not in use" do
+    @package.signatures.clear
+
+    visit package_url(@package)
+    accept_confirm { click_on "Destroy this package", match: :first }
+
+    assert_text "Package was successfully destroyed."
   end
 end

@@ -29,7 +29,7 @@ class PackageTest < ActiveSupport::TestCase
   test "validates presence of at least one additional service" do
     package = Package.new(name: "Test Package", price: 10, plan: @plan)
     assert_not package.valid?
-    assert_includes package.errors[:base], "Package must have at least one additional service"
+    assert_includes package.errors[:base], "Package must have at least one additional service."
   end
 
   test "is valid with name, plan and at least one additional service" do
@@ -56,7 +56,7 @@ class PackageTest < ActiveSupport::TestCase
     package = Package.new(name: "No Services", plan: @plan)
 
     assert_not package.valid?
-    assert_includes package.errors[:base], "Package must have at least one additional service"
+    assert_includes package.errors[:base], "Package must have at least one additional service."
   end
 
   test "is invalid if price is negative" do

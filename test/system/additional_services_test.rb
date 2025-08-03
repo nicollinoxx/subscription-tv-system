@@ -34,10 +34,20 @@ class AdditionalServicesTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
-  test "should destroy Additional service" do
+  test "should not destroy Additional service when it in use" do
     visit additional_service_url(@additional_service)
     accept_confirm { click_on "Destroy this additional service", match: :first }
 
-    assert_text "Additional service was successfully destroyed"
+    assert_text "This AdditionalService is linked to packages or signatures."
+  end
+
+  test "should destroy Additional service when not in use" do
+    @additional_service.signatures.clear
+    @additional_service.packages.clear
+
+    visit additional_service_url(@additional_service)
+    accept_confirm { click_on "Destroy this additional service", match: :first }
+
+    assert_text "Additional service was successfully destroyed."
   end
 end
