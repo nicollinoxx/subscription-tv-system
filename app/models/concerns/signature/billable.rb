@@ -1,4 +1,4 @@
-module Billable
+module Signature::Billable
   extend ActiveSupport::Concern
 
   included do

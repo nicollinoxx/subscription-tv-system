@@ -1,5 +1,5 @@
 class Signature < ApplicationRecord
-  include Billable
+  include Signature::Billable
 
   belongs_to :customer
   belongs_to :plan, optional: true
