@@ -1,4 +1,4 @@
-module HandlesBilling
+module Billable
   extend ActiveSupport::Concern
 
   included do
