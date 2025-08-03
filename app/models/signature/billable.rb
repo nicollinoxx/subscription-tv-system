@@ -2,14 +2,18 @@ module Signature::Billable
   extend ActiveSupport::Concern
 
   included do
-    after_create :create_bills, :create_invoices, :create_installment_book_to_signature
+    after_create :generate_billing_data
   end
 
   private
 
-    def create_bills
-      return if bills.exists?
+    def generate_billing_data
+      create_bills
+      create_invoices
+      create_installment_book_to_signature
+    end
 
+    def create_bills
       create_bills_to plan || package
       additional_services.each { |service| create_bills_to service }
     end

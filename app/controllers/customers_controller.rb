@@ -21,7 +21,8 @@ class CustomersController < ApplicationController
   end
 
   def update
-    redirect_to @customer, notice: "Customer was successfully updated." if @customer.update!(customer_params)
+    @customer.update!(customer_params)
+    redirect_to @customer, notice: "Customer was successfully updated."
   end
 
   def destroy
