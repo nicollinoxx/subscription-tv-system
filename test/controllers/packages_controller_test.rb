@@ -25,7 +25,6 @@ class PackagesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to package_url(Package.last)
   end
 
-
   test "should show package" do
     get package_url(@package)
     assert_response :success

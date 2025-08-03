@@ -3,7 +3,11 @@
 one:
   due_date: 2025-08-02 10:48:01
   price: 9.99
+  billable: one (Plan)
+  signature: one
 
 two:
   due_date: 2025-08-02 10:48:01
   price: 9.99
+  billable: one (Package)
+  signature: two

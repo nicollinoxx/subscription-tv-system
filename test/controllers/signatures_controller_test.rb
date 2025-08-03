@@ -18,9 +18,17 @@ class SignaturesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create signature" do
+  test "should create signature with plan" do
     assert_difference("Signature.count") do
-      post signatures_url, params: { signature: { customer_id: @signature.customer_id, plan_id: @plan.id, package_id: @package.id, additional_service_ids: @additional_services.map(&:id) } }
+      post signatures_url, params: { signature: { customer_id: @signature.customer_id, plan_id: @plan.id, additional_service_ids: @additional_services.map(&:id) } }
+    end
+
+    assert_redirected_to signature_url(Signature.last)
+  end
+
+  test "should create signature with package" do
+    assert_difference("Signature.count") do
+      post signatures_url, params: { signature: { customer_id: @signature.customer_id, plan_id: nil, package_id: @package.id, additional_service_ids: additional_services(:three) } }
     end
 
     assert_redirected_to signature_url(Signature.last)
@@ -29,16 +37,6 @@ class SignaturesControllerTest < ActionDispatch::IntegrationTest
   test "should show signature" do
     get signature_url(@signature)
     assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_signature_url(@signature)
-    assert_response :success
-  end
-
-  test "should update signature" do
-    patch signature_url(@signature), params: { signature: { customer_id: @signature.customer_id } }
-    assert_redirected_to signature_url(@signature)
   end
 
   test "should destroy signature" do

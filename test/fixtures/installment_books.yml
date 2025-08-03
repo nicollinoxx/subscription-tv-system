@@ -3,7 +3,9 @@
 one:
   due_date: 2025-08-02 10:51:57
   price: 9.99
+  signature: one
 
 two:
   due_date: 2025-08-02 10:51:57
   price: 9.99
+  signature: two
