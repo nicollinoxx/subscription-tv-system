@@ -1,24 +1,27 @@
-# README
+# 🎬 Pay-System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails application for managing subscription-based TV services.  
+This system allows managing subscription plans, packages, optional services, customers, subscriptions, and automatic generation of invoices and billing booklets.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## ✨ Features
 
-* System dependencies
+- **Subscription Plans:** Create and manage plans with monthly pricing.
+- **Optional Services:** Register services such as Premiere and Plus. 
+- **Packages:** Combine plans and optional services into packages.
+- **Customer Management:** Store customer personal information. 
+- **Subscriptions:**  
+  - Enforce business rules (plan OR package required; no duplicate optional services).
+  - Automatically generate 12 monthly invoices per subscription.
+  - Generate billing booklets with all invoices.
+- **Interface:** View subscriptions, invoices, and booklets.
 
-* Configuration
+---
 
-* Database creation
+## 🛠️ Technologies
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- **Ruby 3.x**  
+- **Rails 8.x**  
+- **SQLite**  
+- **Minitest** for testing  
